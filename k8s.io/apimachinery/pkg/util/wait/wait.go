@@ -1,13 +1,22 @@
 package wait
 
 import (
+	"context"
 	"time"
 )
 
 // Until loops until stop channel is closed, running f every period.
 
-func Until(f func(), period time.Duration, stopCh <-chan struct{}) {
-	JitterUntil(f, period, 0.0, true, stopCh)
+// func Until(f func(), period time.Duration, stopCh <-chan struct{}) {
+// 	JitterUntil(f, period, 0.0, true, stopCh)
+// }
+
+// UntilWithContext loops until the context is canceled, running f every period.
+
+func UntilWithContext(ctx context.Context, f func(context.Context), period time.Duration) {
+
+	// Notice how we use an anonymous function, and how ctx.Done() bridges the gap!
+	JitterUntil(func() { f(ctx) }, period, 0.0, true, ctx.Done())
 }
 
 // ConditionFunc returns true if the condition is satisfied, or an error
@@ -30,6 +39,12 @@ type Backoff struct {
 }
 
 // Questions unanswered so far by the agent.
+
+// Within a func a new function is defined?
+// (f(ctx)) -> What is this exactly mean, and how is it related to 'Until' function?
+
+// Can I declare a new function within a  existing func ?
+// and if I do so what is the scope of that function ?  -- I guessing it only limited to the function it is declared in.
 
 // Questions answered so far by the agent.
 

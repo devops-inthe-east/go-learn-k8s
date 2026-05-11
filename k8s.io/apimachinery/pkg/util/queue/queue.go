@@ -83,7 +83,7 @@ func (q *Type) Get() (item interface {}, shutdown bool) {
 		q.queue = q.queue[1:]
 
 		return item, false
-		
+}
 
 
 // Questions unanswered so far by the agent.
