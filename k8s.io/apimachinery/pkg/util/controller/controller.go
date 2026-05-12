@@ -72,6 +72,15 @@ func (c *Controller) Informer() {
 
 }
 
+// Questions unanswered so far by the agent.
+
+// My impresion is that context.Context is also a HOF - that can be passed as an argument to a function.
+// But it is not a user defined data type. Nor is it a struct. so then what is it ?
+// Also context.Context is the new way of passing values between functions or goroutines.
+// If so what was the older way deprecated for?>
+
+// Questions answered so far by the agent.
+
 // What is hard work here ?  -- It can be anything like making an api call, writing to a file, or crunching numbers.
 // The runWorker function is an infinite loop , how did should I know that to an untrained eye.
 // is wait.UntilWithContext an HOF function??
